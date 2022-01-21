@@ -12,6 +12,10 @@ jobs:
     uses: andreasfedermann/workflow-examples/.github/workflows/test.yml@main
     needs: [build]
 
+  compliance-test:
+    uses: andreasfedermann/workflow-examples/.github/workflows/compliance-test.yml@main
+    needs: [build]
+
   deploy:
     uses: andreasfedermann/workflow-examples/.github/workflows/deploy.yml@main
     needs: [test]
