@@ -5,8 +5,16 @@ on:
       - "main"
 
 jobs:
-  build-test-deploy:
-    uses: andreasfedermann/workflow-examples/.github/workflows/reusable-workflow.yml@main
+  build:
+    uses: andreasfedermann/workflow-examples/.github/workflows/build.yml@main
+
+  test:
+    uses: andreasfedermann/workflow-examples/.github/workflows/test.yml@main
+    needs: [build]
+
+  deploy:
+    uses: andreasfedermann/workflow-examples/.github/workflows/deploy.yml@main
+    needs: [test]
     with:
       environment: production
     secrets:
