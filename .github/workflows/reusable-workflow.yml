@@ -1,0 +1,48 @@
+name: Reusable workflow example
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
+
+jobs:
+  build:
+    name: "Build Project"
+    runs-on: "ubuntu-20.04"
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Running Build
+        run: |
+          echo "Building the project ..."
+
+  test:
+    name: "Run Unit Tests"
+    runs-on: "ubuntu-20.04"
+    needs: [build]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: "Running Tests"
+        run: |
+          echo "Testing the project ..."
+
+  deploy-pre-release:
+    name: "Deploy pre-release"
+    runs-on: "ubuntu-20.04"
+    needs: [test]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: "Deploying pre-release"
+        run: |
+          echo "Deploying project ${{ github.ref }} to environment ${{ inputs.environment }}..."
+          echo "Using token ${{ secrets.token }} ..."

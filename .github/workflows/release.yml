@@ -1,0 +1,13 @@
+name: pre-release
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  call-workflow-passing-data:
+    uses: andreasfedermann/workflow-examples/.github/workflows/reusable-workflow.yml@main
+    with:
+      environment: production
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
