@@ -18,7 +18,7 @@ jobs:
 
   deploy:
     uses: andreasfedermann/workflow-examples/.github/workflows/deploy.yml@main
-    needs: [test]
+    needs: [test, compliance-test]
     with:
       environment: production
     secrets:
