@@ -5,7 +5,7 @@ on:
       - "main"
 
 jobs:
-  call-workflow-passing-data:
+  build-test-deploy:
     uses: andreasfedermann/workflow-examples/.github/workflows/reusable-workflow.yml@main
     with:
       environment: production
