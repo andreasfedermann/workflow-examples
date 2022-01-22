@@ -15,12 +15,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'npm'
+          # cache: 'npm'
 
       - name: Installing required node modules 
         run: |
           npm install -g gatsby-cli
 
-      - name: Running Build
+      - name: Building website ...
         run: |
-          cd my-first-gatsby-site && gatsby build
+          cd my-first-gatsby-site \
+          && npm install \
+          && gatsby build
